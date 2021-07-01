@@ -1,0 +1,844 @@
+from datetime import datetime, date
+import python_bitbankcc
+import time
+import tkinter as tk
+
+root=tk.Tk()
+root.title("購入するコイン")
+root.geometry("300x200")
+frame=tk.Frame()
+frame.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+
+list_value=tk.StringVar()
+list_value.set(['btc_jpy','xrp_jpy','ltc_jpy','eth_jpy','mona_jpy','bcc_jpy','xlm_jpy','qtum_jpy','bat_jpy'])
+
+#selectmodeの種類(single:1つだけ選択できる、multiple:複数選択できる、extended：複数選択可能＋ドラッグでも選択可能)
+listbox=tk.Listbox(frame,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("プログラムを終了したい場合場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+def check():
+    text_check=listbox.curselection()
+    print(listbox.get(text_check))
+    coin=listbox.get(text_check)
+
+Button=tk.Button(frame_button,text="決定",command=check)
+Button.grid(row=1,column=0)
+
+root.mainloop()
+print(coin)
+
+#データ
+list_value=tk.StringVar()
+list_value.set([1.005,1.075,1.01,1.015,1.02,1.025])
+
+listbox=tk.Listbox(frame,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("プログラムを終了したい場合場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+def check():
+    text_check=listbox.curselection()
+    print(listbox.get(text_check))
+    coin=listbox.get(text_check)
+
+Button=tk.Button(frame_button,text="決定",command=check)
+Button.grid(row=1,column=0)
+
+root.mainloop()
+print(coin)
+    
+    
+import sys
+import tkinter as tk
+import python_bitbankcc
+import time
+
+
+# 初期設定
+API_KEY = ''
+API_SECRET = ''
+pub = python_bitbankcc.public()
+prv = python_bitbankcc.private(API_KEY, API_SECRET)
+coin_list=['btc_jpy','xrp_jpy','ltc_jpy','eth_jpy','mona_jpy','bcc_jpy','xlm_jpy','qtum_jpy','bat_jpy']
+
+#-------------------------------------------------------------------------------------------------------------------------
+
+def check1():
+    text_check=listbox.curselection()
+    global coin
+    global coinbangou
+    coin=listbox.get(text_check)
+    coinbangou=coin_list.index(coin)
+    flame1.destroy()
+
+flame1=tk.Tk()
+flame1.title("監視するコイン")
+flame1.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+#データ
+list_value=tk.StringVar()
+list_value.set(['btc_jpy','xrp_jpy','ltc_jpy','eth_jpy','mona_jpy','bcc_jpy','xlm_jpy','qtum_jpy','bat_jpy'])
+
+#single:1つだけ選択できる、multiple:複数選択
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check1)
+Button.grid(row=1,column=0)
+flame1.mainloop()
+
+print(coin)
+print(coinbangou)
+#-------------------------------------------------------------------------------------------------------------------------
+
+def check2():
+    text_check=listbox.curselection()
+    global riekiritu
+    riekiritu=listbox.get(text_check)
+    flame2.destroy()
+
+flame2=tk.Tk()
+flame2.title("利益率決定")
+flame2.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([1.025,1.020,1.015,1.010,1.005])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check2)
+Button.grid(row=1,column=0)
+flame2.mainloop()
+
+print(riekiritu)
+
+#----------------------------------------------------------------------------------------------------------------------------
+
+def check3():
+    text_check=listbox.curselection()
+    global songiri
+    songiri=listbox.get(text_check)
+    flame3.destroy()
+
+flame3=tk.Tk()
+flame3.title("損切割合決定")
+flame3.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([0.9,0.85,0.8,0.75,0.7,0.6,0.5])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check3)
+Button.grid(row=1,column=0)
+flame3.mainloop()
+
+print(songiri)
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+def check5():
+    text_check=listbox.curselection()
+    global interval
+    interval=listbox.get(text_check)
+    Messagebox = tk.messagebox.askquestion('最終確認',"銘柄:"+coin+'\n利益率:'+str(riekiritu)+"\n損切割合:"+"\n価格監視インターバル:"+str(interval)+"秒\n監視を実行しますか？", icon='warning')
+    if Messagebox == 'yes': 
+        flame5.destroy()
+    else:
+        flame5.destroy()
+        sys.exit()
+
+flame5=tk.Tk()
+flame5.title("通貨監視インターバル(単位：秒)決定")
+flame5.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([10,30,60,180,300,600,900,1200,1800])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="確認画面へ",command=check5)
+Button.grid(row=1,column=0)
+flame5.mainloop()
+
+print(interval)
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+# アセットリストの取得
+asset_list = prv.get_asset()
+kaine=float(pub.get_ticker(coin)['last'])
+amount=asset_list['assets'][coinbangou+1]['onhand_amount']
+print(amount)
+n=0
+while True:
+    last_price=float(pub.get_ticker(coin)['last'])
+    print(last_price)
+
+    if last_price>kaine*riekiritu:
+        value = prv.order(coin, last_price, amount, 'sell', 'market')
+        print('Success!!')
+        break
+    elif last_price<kaine*songiri:
+        value = prv.order(coin, last_price, amount, 'sell', 'market')
+        print('Failure')
+        break
+    n=n+1
+    print(n,'継続中')
+    time.sleep(interval)
+  
+  import sys
+import requests
+from datetime import datetime
+import time
+import tkinter as tk
+import python_bitbankcc
+
+# bitbank初期設定
+API_KEY = ''
+API_SECRET = ''
+pub = python_bitbankcc.public()
+prv = python_bitbankcc.private(API_KEY, API_SECRET)
+coin_list=['btc_jpy','xrp_jpy','ltc_jpy','eth_jpy','mona_jpy','bcc_jpy','xlm_jpy','qtum_jpy','bat_jpy']
+
+
+
+# ローソク足設定(秒)
+chart_sec = 1800
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
+def get_price(min, before=0, after=0):
+	price = []
+	params = {"periods" : min }
+	if before != 0:
+		params["before"] = before
+	if after != 0:
+		params["after"] = after
+	response = requests.get("https://api.cryptowat.ch/markets/bitflyer/btcfxjpy/ohlc",params)
+	data = response.json()
+	
+	if data["result"][str(min)] is not None:
+		for i in data["result"][str(min)]:
+			price.append({ "close_time" : i[0],
+				"close_time_dt" : datetime.fromtimestamp(i[0]).strftime('%Y/%m/%d %H:%M'),
+				"open_price" : i[1],
+				"high_price" : i[2],
+				"low_price" : i[3],
+				"close_price": i[4] })
+	return price
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
+def EMA( value,before=None ):
+	if before is not None:
+		MA = sum(i["close_price"] for i in price[-2*value + before : -1*value + before]) / value
+		EMA = (price[-1*value + before]["close_price"] * 2 / (value+1)) + (MA * (value-1) / (value+1))
+		for i in range(value-1):
+			EMA = (price[-1*value+before+1 + i]["close_price"] * 2 /(value+1)) + (EMA * (value-1) / (value+1))
+	else:
+		MA = sum(i["close_price"] for i in price[-2*value: -1*value]) / value
+		EMA = (price[-1*value]["close_price"] * 2 / (value+1)) + (MA * (value-1) / (value+1))
+		for i in range(value-1):
+			EMA = (price[-1*value+1 + i]["close_price"] * 2 /(value+1)) + (EMA * (value-1) / (value+1))
+	return round(EMA)
+
+price = get_price(chart_sec)
+EMA7 = EMA(7,-2)
+EMA25 = EMA(25,-2)
+EMA99 = EMA(99,-2)
+print(EMA7,EMA25,EMA99)
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
+def check1():
+    text_check=listbox.curselection()
+    global kounyuuwariai
+    kounyuuwariai=listbox.get(text_check)
+    flame4.destroy()
+
+flame4=tk.Tk()
+flame4.title("日本円残高に対する購入割合決定")
+flame4.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([0.7,0.6,0.5,0.4,0.3,0.2,0.1])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check1)
+Button.grid(row=1,column=0)
+flame4.mainloop()
+
+print(kounyuuwariai)
+
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+def check2():
+    text_check=listbox.curselection()
+    global interval
+    interval=listbox.get(text_check)
+    Messagebox = tk.messagebox.askquestion('最終確認',"日本円残高に対する投資割合:"+str(kounyuuwariai*100)+"%"+"\n価格監視インターバル:"+str(interval)+"秒\n監視を実行しますか？", icon='warning')
+    if Messagebox == 'yes': 
+        flame5.destroy()
+    else:
+        flame5.destroy()
+        sys.exit()
+
+flame5=tk.Tk()
+flame5.title("通貨監視インターバル(単位：秒)決定")
+flame5.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([10,30,60,180,300,600,900,1200,1800])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="確認画面へ",command=check2)
+Button.grid(row=1,column=0)
+flame5.mainloop()
+
+print(interval)
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+# アセットリストの取得
+asset_list = prv.get_asset()
+
+# アセット情報の一例
+asset_jpy = asset_list['assets'][0]
+genkin=float(asset_jpy['onhand_amount'])
+print(genkin)
+
+# 以下EMAアルゴリズム------------------------------------------------------------------------------------------------------------
+
+while True:
+    ticker = pub.get_ticker('btc_jpy')
+    kaine = float(ticker['last'])
+    amount=round(genkin*kounyuuwariai/kaine,3)
+    if EMA(7,-2)>EMA(25,-2) and EMA(99,-2)>EMA(7,-2) and amount==0:
+        value = prv.order('btc_jpy', kaine, amount, 'buy', 'market')
+        
+    if EMA(7,-2)<EMA(25,-2) and EMA(99,-2)<EMA(7,-2) and amount!=0:
+        last_price=float(pub.get_ticker('btc_jpy')['last'])
+        value = prv.order('btc_jpy', last_price, amount, 'sell', 'market')
+    
+    print("running")
+    time.sleep(interval)
+    
+    
+import hashlib
+import hmac
+import requests
+import datetime
+import json
+from pprint import pprint
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+
+#-----------------------------------------------------------------
+#取引所関係のmethod
+
+#bitFlyerのAPIを読み込んで終値のデータをpandasのSeriesにして返す関数
+def get_price_data():
+    response = requests.get("https://api.cryptowat.ch/markets/bitflyer/btcfxjpy/ohlc",params = { "periods" : period ,"after" : 1})
+    response = response.json()
+    close_data = []
+    for i in range(6000):
+        close_data.append(response["result"][str(period)][i][4])
+    arr = np.array(close_data)
+    return pd.Series(arr)
+
+#--------------------------------------------------------------------
+#テクニカル指標実装系method
+
+#EMA
+#EMA_periodは期間、nはろうそく何本分前の値か
+def EMA(EMA_period,n):
+    EMA_data = []
+    for i in range(2*EMA_period):
+        EMA_data.insert(0,close[data_n-1-i])
+    if n == 0:
+        arr = np.array(EMA_data)[-EMA_period:]
+    else:
+        arr = np.array(EMA_data)[-n-EMA_period:-n]
+    #print(arr)
+    EMA = pd.Series(arr).ewm(span=EMA_period).mean()
+    #print(EMA)
+
+    return EMA[EMA_period-1]
+
+
+#MACD
+#a=短期EMA_period,b=長期EMA_period,s=シグナル期間
+def MACD_and_signal(a,b,s):
+    MACD = []
+    for i in range(a):
+        MACD.insert(0,EMA(a,i)-EMA(b,i))
+    arr = np.array(MACD)[-s:]
+    Signal = pd.Series(arr).rolling(s).mean()
+
+    return MACD,Signal
+
+
+#ATR
+#nは期間、n=14が普通
+def ATR(n):
+    data = []
+    for i in range(2*n-1):
+        p1 = response[data_n-i-1][2]-response[data_n-i-1][3] #当日高値-当日安値
+        p2 = response[data_n-i-1][2]-response[data_n-i-2][4] #当日高値-前日終値
+        p3 = response[data_n-i-1][3]-response[data_n-i-2][4] #当日安値-前日終値
+        tr = max(abs(p1),abs(p2),abs(p3))
+        data.insert(0,tr)
+    arr = np.array(data)[-n:]
+    #print(arr)
+    ATR = pd.Series(arr).ewm(span=n).mean()
+    #print(ATR)
+    return ATR[n-1]
+
+
+#RSI
+#pは期間
+def RSI(p):
+    RSI_period = p
+    #RSI_data = 
+    diff = close.diff(1)
+    positive = diff.clip_lower(0).ewm(alpha=1.0/RSI_period).mean()
+    negative = diff.clip_upper(0).ewm(alpha=1.0/RSI_period).mean()
+    RSI = 100-100/(1-positive/negative)
+    return RSI
+
+
+
+#--------------------------------------------------------------------
+#評価値系
+
+#RSIとMACDによる売りサイン
+def sell_signal():
+    if * * *:
+    return True
+    else: return False
+
+
+#RSIとMACDによる買いサイン
+def buy_signal():
+    if * * *:
+    return True
+    else: return False
+
+#--------------------------------------------------------------
+#ここからアルゴリズム
+
+#設定
+#何秒足か
+period = 60 
+#終値配列の長さ
+data_n = 100
+#flag
+flag = {
+    "check":True,
+    "sell_position":False,
+    "buy_position":False
+}
+close_data = get_price_data()
+response_data = requests.get("https://api.cryptowat.ch/markets/bitflyer/btcfxjpy/ohlc",params = { "periods" : period , "after" : 1})
+response_data = response_data.json()
+i = profit = loss = count1 = count2 = drawdown = start = 0
+asset_list = [0]
+
+
+while i < 5500:
+    while(flag["check"]):
+        response = []
+        closelist = []
+        for j in range(data_n):
+            response.append(response_data["result"][str(period)][i+j+start])
+            closelist.append(close_data[i+j+start])
+        arr = np.array(closelist)
+        close = pd.Series(arr)
+        print(response[data_n-1][0])
+        print(close[data_n-1])
+
+
+
+        if buy_signal():
+            print("買い注文をします")
+            print("ATR:"+str(int(ATR(14))))
+            price = close[data_n-1]
+            width = int(2*ATR(14))
+            flag["buy_position"] = True
+            flag["check"] = False
+        #else:print("買い注文しません")
+
+        if sell_signal():
+            print("売り注文をします")
+            print("ATR:"+str(int(ATR(14))))
+            price = close[data_n-1]
+            width = int(2*ATR(14))
+            flag["sell_position"] = True
+            flag["check"] = False
+        #else:print("売り注文しません")
+
+        i += 1
+
+
+    while(flag["sell_position"]):
+        response = []
+        closelist = []
+        for j in range(data_n):
+            response.append(response_data["result"][str(period)][i+j+start])
+            closelist.append(close_data[i+j+start])
+        arr = np.array(closelist)
+        close = pd.Series(arr)
+        print(response[data_n-1][0])
+        print(close[data_n-1])
+        if response[data_n-1][3] < price-width:
+            print("利確:+"+str(width))
+            count1 += 1
+            profit += width
+            flag["sell_position"] = False
+            flag["check"] = True
+        if response[data_n-1][2] > price+width:
+            print("損切り:-"+str(width))
+            count2 += 1
+            loss += width
+            flag["sell_position"] = False
+            flag["check"] = True
+        i += 1
+
+    while(flag["buy_position"]):
+        response = []
+        closelist = []
+        for j in range(data_n):
+            response.append(response_data["result"][str(period)][i+j+start])
+            closelist.append(close_data[i+j+start])
+        arr = np.array(closelist)
+        close = pd.Series(arr)
+        print(response[data_n-1][0])
+        print(close[data_n-1])
+        if response[data_n-1][2] > price+width:
+            print("利確:+"+str(width))
+            count1 += 1
+            profit += width
+            flag["buy_position"] = False
+            flag["check"] = True
+        if response[data_n-1][3] < price-width:
+            print("損切り:-"+str(width))
+            count2 += 1
+            loss += width
+            flag["buy_position"] = False
+            flag["check"] = True
+        i += 1
+
+    asset_list.append(profit-loss)
+
+    if drawdown > profit - loss:
+        drawdown = profit - loss
+
+
+
+print("利益合計："+str(profit))
+print("損失合計："+str(loss))
+print("儲け："+str(profit-loss))
+print("利確回数："+str(count1))
+print("損切り回数："+str(count2))
+ts = pd.Series(np.array(asset_list))
+ts.plot()
+plt.show()
+
+import sys
+import tkinter as tk
+import python_bitbankcc
+import time
+
+
+# 初期設定
+API_KEY = ''
+API_SECRET = ''
+pub = python_bitbankcc.public()
+prv = python_bitbankcc.private(API_KEY, API_SECRET)
+
+
+#-------------------------------------------------------------------------------------------------------------------------
+
+def check1():
+    text_check=listbox.curselection()
+    global coin
+    coin=listbox.get(text_check)
+    flame1.destroy()
+
+flame1=tk.Tk()
+flame1.title("購入するコイン")
+flame1.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+#データ
+list_value=tk.StringVar()
+list_value.set(['btc_jpy','xrp_jpy','ltc_jpy','eth_jpy','mona_jpy','bcc_jpy','xlm_jpy','qtum_jpy','bat_jpy'])
+
+#single:1つだけ選択できる、multiple:複数選択
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check1)
+Button.grid(row=1,column=0)
+flame1.mainloop()
+
+print(coin)
+
+#-------------------------------------------------------------------------------------------------------------------------
+
+def check2():
+    text_check=listbox.curselection()
+    global riekiritu
+    riekiritu=listbox.get(text_check)
+    flame2.destroy()
+
+flame2=tk.Tk()
+flame2.title("利益率決定")
+flame2.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([1.025,1.020,1.015,1.010,1.005])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check2)
+Button.grid(row=1,column=0)
+flame2.mainloop()
+
+print(riekiritu)
+
+#----------------------------------------------------------------------------------------------------------------------------
+
+def check3():
+    text_check=listbox.curselection()
+    global songiri
+    songiri=listbox.get(text_check)
+    flame3.destroy()
+
+flame3=tk.Tk()
+flame3.title("損切割合決定")
+flame3.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([0.9,0.85,0.8,0.75,0.7,0.6,0.5])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check3)
+Button.grid(row=1,column=0)
+flame3.mainloop()
+
+print(songiri)
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+def check4():
+    text_check=listbox.curselection()
+    global kounyuuwariai
+    kounyuuwariai=listbox.get(text_check)
+    flame4.destroy()
+
+flame4=tk.Tk()
+flame4.title("日本円残高に対する購入割合決定")
+flame4.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([0.7,0.6,0.5,0.4,0.3,0.2,0.1])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="次へ",command=check4)
+Button.grid(row=1,column=0)
+flame4.mainloop()
+
+print(kounyuuwariai)
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+def check5():
+    text_check=listbox.curselection()
+    global interval
+    interval=listbox.get(text_check)
+    Messagebox = tk.messagebox.askquestion('最終確認',"銘柄:"+coin+'\n利益率:'+str(riekiritu)+"\n損切割合:"+str(songiri)+"\n日本円残高に対する投資割合:"+str(kounyuuwariai*100)+"%"+"\n価格監視インターバル:"+str(interval)+"秒\n投資しますか？", icon='warning')
+    if Messagebox == 'yes': 
+        flame5.destroy()
+    else:
+        flame5.destroy()
+        sys.exit()
+
+flame5=tk.Tk()
+flame5.title("通貨監視インターバル(単位：秒)決定")
+flame5.geometry("300x200")
+frame1=tk.Frame()
+frame1.grid(row=0,sticky="we")
+frame_button=tk.Frame()
+frame_button.grid(row=1,sticky="we")
+
+list_value=tk.StringVar()
+list_value.set([10,30,60,180,300,600,900,1200,1800])
+
+listbox=tk.Listbox(frame1,height=8,listvariable=list_value,selectmode="single")
+listbox.pack()
+
+text_str=tk.StringVar()
+text_str.set("キャンセルの場合×を押してください。")
+text=tk.Label(frame_button,textvariable=text_str)
+text.grid(row=0,columnspan=3)
+
+Button=tk.Button(frame_button,text="確認画面へ",command=check5)
+Button.grid(row=1,column=0)
+flame5.mainloop()
+
+print(interval)
+
+#-----------------------------------------------------------------------------------------------------------------------------
+
+# アセットリストの取得
+asset_list = prv.get_asset()
+
+# アセット情報の一例
+asset_jpy = asset_list['assets'][0]
+genkin=float(asset_jpy['onhand_amount'])
+print(genkin)
+
+# 以下処理
+ticker = pub.get_ticker(coin)
+kaine = float(ticker['last'])
+print(kaine,kaine*riekiritu)
+amount=round(genkin*kounyuuwariai/kaine,3)
+print(genkin,kaine,amount)
+value = prv.order(coin, kaine, amount, 'buy', 'market')
+n=0
+while True:
+    while True:
+        last_price=float(pub.get_ticker(coin)['last'])
+        print(last_price)
+        if last_price>kaine*riekiritu:
+            value = prv.order(coin, last_price, amount, 'sell', 'market')
+            print('Success!!')
+            break
+        elif last_price<kaine*songiri:
+            value = prv.order(coin, last_price, amount, 'sell', 'market')
+            print('Failure')
+            break
+        n=n+1
+        print(n,'running')
+        time.sleep(interval)
+
+ 
+ 
+
